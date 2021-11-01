@@ -1,8 +1,17 @@
 import React from "react";
 
-const Button = ({ type, size = "md", onClick, children, prefix, suffix }) => {
+const Button = ({
+  type,
+  size = "md",
+  onClick,
+  children,
+  prefix,
+  suffix,
+  disableButton,
+}) => {
   return (
     <button
+      disabled={disableButton}
       className={`button button--${size} button--${type}`}
       onClick={onClick}
       data-testid="button-add-driver"

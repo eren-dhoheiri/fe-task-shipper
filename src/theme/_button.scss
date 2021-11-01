@@ -16,6 +16,17 @@
     }
   }
 
+  &--pagination {
+    margin-right: 24px;
+    font-size: 16px;
+    border: none;
+    background-color: $background-color;
+    color: $black-color;
+    &:disabled {
+      color: $grey-color;
+    }
+  }
+
   &--md {
     height: 40px;
   }

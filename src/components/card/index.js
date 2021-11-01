@@ -3,6 +3,7 @@ import FieldName from "../field-name";
 import ImgHolder from "../photo";
 import { EllipsisOutlined } from "@ant-design/icons";
 import { ImageHolder } from "../../assets";
+import moment from "moment";
 
 export const Card = ({ title, children }) => {
   return (
@@ -25,7 +26,6 @@ export const DriverCard = ({
   phone,
   birth,
   email,
-  status,
 }) => {
   let title = (
     <span>
@@ -34,7 +34,6 @@ export const DriverCard = ({
   );
   let props = {
     title,
-    status,
   };
   return (
     <Card {...props}>
@@ -44,7 +43,10 @@ export const DriverCard = ({
           <FieldName label="Nama Driver" value={name} />
           <FieldName label="Telepon" value={phone} />
           <FieldName label="Email" value={email} />
-          <FieldName label="Tanggal Lahir" value={birth} />
+          <FieldName
+            label="Tanggal Lahir"
+            value={moment(birth).format("DD-MM-yyyy")}
+          />
         </div>
       </div>
     </Card>

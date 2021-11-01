@@ -268,7 +268,6 @@
       }
       &__body {
         display: flex;
-        flex-wrap: nowrap;
         overflow-x: auto;
       }
     }
@@ -294,6 +293,12 @@
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
+      }
+      &__pagination {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
       }
     }
   }
@@ -386,11 +391,6 @@
             padding: 12.5px 15px;
           }
         }
-      }
-      &__body {
-        display: flex;
-        flex-wrap: wrap;
-        overflow-x: auto;
       }
     }
   }

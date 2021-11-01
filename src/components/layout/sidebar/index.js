@@ -33,7 +33,8 @@ const Sidebar = ({ collapse, toggleSideBar, location }) => {
       return v;
     });
     setNavMenu(nav);
-  }, [location, navMenu]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={`main-sidebar ${collapse ? "collapse" : ""}`}>
