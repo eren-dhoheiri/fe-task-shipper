@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Main from "../../components/layout/main";
 import { PlusOutlined } from "@ant-design/icons";
-import Button from "../../components/button";
-import Search from "../../components/search";
-import { DriverCard } from "../../components/card";
-import PageTitle from "../../components/section-title";
+import {
+  Main,
+  Button,
+  Search,
+  DriverCard,
+  PageTitle,
+  Loading,
+  NotFound,
+} from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { driversActions } from "../../redux/actions";
 
@@ -21,6 +25,7 @@ const DriverManagement = () => {
   let [dataDriver, setDataDriver] = useState(
     useSelector((state) => state.data)
   );
+  let [loading, setLoading] = useState(useSelector((state) => state.isLoading));
 
   const prevButton = () => {
     setMaxPage(maxPage - 5);
@@ -36,11 +41,14 @@ const DriverManagement = () => {
   };
 
   function getData() {
-    const dataCache = JSON.parse(localStorage.getItem("DRIVER"));
+    const checkCache = localStorage.getItem("DRIVER");
+    const dataCache = checkCache ? JSON.parse(checkCache) : false;
     if (dataCache.length >= 30) {
       setDataDriver(dataCache);
+      setLoading(false);
     } else {
       dispatch(driversActions());
+      setLoading(false);
     }
   }
 
@@ -49,13 +57,27 @@ const DriverManagement = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChangeSearch = (value) => {
-    setDataDriver(
-      dataDriver.filter((v) =>
-        v.name.first.toLowerCase().includes(value.toLowerCase())
-      )
-    );
-    if (value === "") setDataDriver(dataDriver);
+  const handleChangeSearch = async (event) => {
+    try {
+      const searchText = event;
+      const dataCache = JSON.parse(localStorage.getItem("DRIVER"));
+      if (searchText === "" || null) {
+        setDataDriver(dataCache);
+        return true;
+      } else {
+        const dataClone = await dataCache.filter((row) => {
+          return (
+            row.name.first.toLowerCase().includes(searchText.toLowerCase()) ||
+            row.name.last.toLowerCase().includes(searchText.toLowerCase())
+          );
+        });
+        Promise.all(dataClone).then(() => {
+          setDataDriver(dataClone);
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -73,19 +95,25 @@ const DriverManagement = () => {
           </div>
         </div>
         <div className="main-content__body" data-testid="driver-list">
-          {JSON.parse(JSON.stringify(dataDriver))
-            .slice(minPage, maxPage)
-            .map((e, k) => (
-              <DriverCard
-                key={k}
-                id={e.login.username}
-                name={`${e.name.first}, ${e.name.last}`}
-                phone={e.cell}
-                email={e.email}
-                photo={e.picture.medium}
-                birth={e.dob.date}
-              />
-            ))}
+          {loading ? (
+            <Loading />
+          ) : dataDriver.length !== 0 ? (
+            JSON.parse(JSON.stringify(dataDriver))
+              .slice(minPage, maxPage)
+              .map((e, k) => (
+                <DriverCard
+                  key={k}
+                  id={e.login.username}
+                  name={`${e.name.first}, ${e.name.last}`}
+                  phone={e.cell}
+                  email={e.email}
+                  photo={e.picture.medium}
+                  birth={e.dob.date}
+                />
+              ))
+          ) : (
+            <NotFound />
+          )}
         </div>
         <div className="main-content__pagination">
           <Button
@@ -97,7 +125,7 @@ const DriverManagement = () => {
           </Button>
           <Button
             type="pagination"
-            disableButton={maxPage === dataDriver.length}
+            disableButton={maxPage >= dataDriver.length}
             onClick={nextButton}
           >
             {" Next page >"}

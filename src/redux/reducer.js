@@ -2,7 +2,7 @@ import { driversConstant as dc } from "./constants";
 
 const initialState = {
   data: [],
-  isLoading: false,
+  isLoading: true,
 };
 
 const driverReducer = (state = initialState, action) => {

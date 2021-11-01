@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "../../components/layout/main";
+import { Main } from "../../components";
 import { ShipperLogo } from "../../assets";
 
 const BlankPage = () => {
