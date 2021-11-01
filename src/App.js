@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./theme/index.scss";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BlankPage, DriverManagement } from "./pages";
+import { createBrowserHistory } from "history";
 
-function App() {
+const App = () => {
+  const history = createBrowserHistory();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={BlankPage} />
+        <Route exact path="/driver-management" component={DriverManagement} />
+        <Route exact path="/pickup" component={BlankPage} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
