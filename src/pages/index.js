@@ -1,4 +1,5 @@
-import BlankPage from "./BlankPage";
-import DriverManagement from "./DriverManagement";
+import BlankPage from "./blank-page";
+import ComingSoon from "./coming-soon";
+import DriverManagement from "./drive-management";
 
-export { BlankPage, DriverManagement };
+export { BlankPage, DriverManagement, ComingSoon };

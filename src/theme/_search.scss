@@ -1,0 +1,45 @@
+.search {
+  position: relative;
+
+  input {
+    /* Remove First */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    padding: 12.5px;
+    padding-left: 40px;
+    outline: none;
+    border-top: none;
+    border: 1px solid $light-grey-color;
+    border-radius: 5px;
+    box-shadow: none;
+    background-color: #fff;
+
+    &::placeholder {
+      color: $grey-color;
+      font-weight: 500;
+    }
+
+    &:focus {
+      border: 1px solid $primary-color;
+      outline: none;
+    }
+  }
+
+  &--md {
+    input {
+      height: 40px;
+      width: 150px;
+    }
+  }
+
+  .anticon {
+    svg {
+      color: $primary-color;
+      position: absolute;
+      left: 12.5px;
+      top: 12.5px;
+    }
+  }
+}

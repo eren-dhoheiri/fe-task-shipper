@@ -1,0 +1,13 @@
+.field-name {
+  margin-top: 15px;
+  &__label {
+    color: $grey-color;
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+  &__value {
+    color: $black-color;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}

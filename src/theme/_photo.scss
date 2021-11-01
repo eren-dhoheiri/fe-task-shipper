@@ -1,0 +1,11 @@
+.photo {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  padding: 3px;
+  border: 3px solid $light-grey-color;
+  &__img {
+    height: 100%;
+    border-radius: 50%;
+  }
+}

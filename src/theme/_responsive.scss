@@ -1,0 +1,397 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .main-header {
+    height: 60px;
+    padding: 15px;
+    &__right {
+      &__icons {
+        margin-right: 0;
+        padding-right: 5px;
+      }
+      &__user {
+        img {
+          height: 30px;
+          margin-left: 15px;
+        }
+        span {
+          display: none;
+        }
+      }
+    }
+    .toggle-sidebar-sm {
+      display: block;
+    }
+    .toggle-sidebar-md {
+      display: none;
+    }
+  }
+  .main-sidebar {
+    position: fixed;
+    z-index: 2;
+    background-color: white;
+    left: -12rem;
+    max-width: 12rem;
+    &.collapse {
+      left: 0;
+    }
+    &__logo {
+      padding: 20px 15px 18px;
+      margin-bottom: 0;
+      position: relative;
+      img {
+        height: 22px;
+        width: auto;
+      }
+      a {
+        display: block;
+        color: $black-color;
+        position: absolute;
+        top: 20px;
+        right: 15px;
+      }
+      .anticon {
+        font-size: 19px;
+      }
+      &__mobile {
+        display: block;
+      }
+      &__desktop {
+        display: none;
+      }
+    }
+  }
+  .main-layout {
+    .main-content {
+      padding: 15px;
+      &__header {
+        flex-direction: column;
+        margin-bottom: 15px;
+        &__title {
+          font-size: 20px;
+        }
+        &__subtitle {
+          font-size: 14px;
+        }
+        &__left {
+          margin-bottom: 30px;
+        }
+        &__right {
+          flex-direction: column;
+          .search {
+            width: 100%;
+            margin-bottom: 15px;
+          }
+          input {
+            width: 100%;
+          }
+        }
+        .button {
+          padding: 12.5px 15px;
+        }
+      }
+    }
+    &__body {
+      display: flex;
+      flex-wrap: wrap;
+      overflow: visible;
+    }
+  }
+  .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .main-header {
+    &__right {
+      &__icons {
+        border-right: 3px solid $light-grey-color;
+      }
+    }
+    .toggle-sidebar-sm {
+      display: block;
+    }
+    .toggle-sidebar-md {
+      display: none;
+    }
+  }
+
+  .main-sidebar {
+    max-width: 12rem;
+    &__logo {
+      &__mobile {
+        display: block;
+      }
+      &__desktop {
+        display: none;
+      }
+    }
+    &.collapse {
+      max-width: 4.15rem;
+      .main-sidebar__nav {
+        &__item {
+          &__link {
+            &__title {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    &__logo {
+      img {
+        height: 28px;
+        width: auto;
+      }
+    }
+  }
+
+  .main-layout {
+    .main-content {
+      &__header {
+        flex-direction: column;
+        &__title {
+          font-size: 18px;
+        }
+        &__subtitle {
+          font-size: 14px;
+        }
+        &__right {
+          .search {
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+      &__body {
+        display: flex;
+        flex-wrap: wrap;
+        overflow: visible;
+      }
+    }
+  }
+  .card {
+    width: 45%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .main-header {
+    .toggle-sidebar-sm {
+      display: none;
+    }
+    .toggle-sidebar-md {
+      display: block;
+    }
+  }
+  .main-sidebar {
+    max-width: 12rem;
+    &__logo {
+      &__mobile {
+        display: none;
+      }
+      &__desktop {
+        display: block;
+      }
+    }
+  }
+  .main-layout {
+    .main-content {
+      &__header {
+        flex-direction: row;
+        &__title {
+          font-size: 20px;
+        }
+        &__subtitle {
+          font-size: 14px;
+        }
+        &__right {
+          flex-direction: row;
+          .search {
+            input {
+              width: 140px;
+            }
+          }
+        }
+      }
+      &__body {
+        display: flex;
+        flex-wrap: wrap;
+        overflow: visible;
+      }
+    }
+  }
+  .card {
+    width: 45%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .main-sidebar {
+    max-width: 13rem;
+    &__logo {
+      &__mobile {
+        display: none;
+      }
+      &__desktop {
+        display: block;
+      }
+    }
+  }
+  .main-layout {
+    .main-content {
+      &__header {
+        &__title {
+          font-size: 22px;
+        }
+        &__subtitle {
+          font-size: 16px;
+        }
+        &__right {
+          .search {
+            input {
+              width: 180px;
+            }
+          }
+          .button {
+            display: flex;
+            &__text {
+              display: block;
+            }
+          }
+        }
+      }
+      &__body {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+    }
+  }
+  .card {
+    width: 30%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .main-sidebar {
+    max-width: 14rem;
+  }
+  .main-layout {
+    .main-content {
+      &__header {
+        &__title {
+          font-size: 24px;
+        }
+      }
+      &__body {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+    }
+  }
+}
+
+/* Very large devices (very large desktops, 1400px and up) */
+@media only screen and (min-width: 1400px) {
+  .main-sidebar {
+    max-width: 14rem;
+  }
+  .main-layout {
+    .main-content {
+      &__header {
+        &__title {
+          font-size: 26px;
+        }
+      }
+      &__body {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .main-sidebar {
+    position: fixed;
+    z-index: 2;
+    background-color: white;
+    left: -12rem;
+    max-width: 12rem;
+    min-width: 180px;
+    &.collapse {
+      left: 0;
+      .main-sidebar__nav {
+        &__item {
+          &__link {
+            &__title {
+              display: inherit;
+            }
+          }
+        }
+      }
+    }
+    &__logo {
+      padding: 20px 15px 18px;
+      margin-bottom: 0;
+      position: relative;
+      img {
+        height: 22px;
+        width: auto;
+      }
+      a {
+        display: block;
+        color: $black-color;
+        position: absolute;
+        top: 20px;
+        right: 15px;
+      }
+      .anticon {
+        font-size: 19px;
+      }
+      &__mobile {
+        display: block;
+      }
+      &__desktop {
+        display: none;
+      }
+    }
+  }
+  .main-layout {
+    .main-content {
+      &__header {
+        &__title {
+          font-size: 20px;
+        }
+        &__subtitle {
+          font-size: 10px;
+        }
+        &__right {
+          .search {
+            width: 60%;
+            input {
+              width: 100%;
+            }
+          }
+          .button {
+            padding: 12.5px 15px;
+          }
+        }
+      }
+      &__body {
+        display: flex;
+        flex-wrap: wrap;
+        overflow-x: auto;
+      }
+    }
+  }
+}
