@@ -21,10 +21,14 @@ const DriverManagement = () => {
 
   let [maxPage, setMaxPage] = useState(5);
   let [minPage, setMinPage] = useState(0);
+  let [driver] = useSelector((state) => state.data);
   let [dataDriver, setDataDriver] = useState(
     useSelector((state) => state.data)
   );
   let [loading, setLoading] = useState(useSelector((state) => state.isLoading));
+
+  // console.log(dataDriver);
+  console.log("driver", driver);
 
   const prevButton = () => {
     setMaxPage(maxPage - 5);
@@ -39,22 +43,25 @@ const DriverManagement = () => {
     return 0;
   };
 
-  const getData = () => {
-    dispatch(driversActions());
-    setLoading(false);
+  const checkData = () => {
+    const checkCache = localStorage.getItem("DRIVER");
+    const dataCache = checkCache ? JSON.parse(checkCache) : setLoading(true);
+    return dataCache;
   };
 
   useEffect(() => {
-    const checkCache = localStorage.getItem("DRIVER");
-    const dataCache = checkCache ? JSON.parse(checkCache) : setLoading(true);
+    const dataCache = checkData();
     if (dataCache && dataCache.length >= 30) {
       setDataDriver(dataCache);
       setLoading(false);
     } else {
-      getData();
+      dispatch(driversActions());
+      setLoading(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (driver && driver.length > 1) {
+      setDataDriver(driver);
+    }
+  }, [dispatch, driver]);
 
   const handleChangeSearch = async (event) => {
     try {
@@ -95,7 +102,7 @@ const DriverManagement = () => {
         <div className="main-content__body" data-testid="driver-list">
           {loading ? (
             <Loading />
-          ) : dataDriver.length ? (
+          ) : dataDriver && dataDriver.length ? (
             JSON.parse(JSON.stringify(dataDriver))
               .slice(minPage, maxPage)
               .map((e, k) => (
@@ -123,7 +130,7 @@ const DriverManagement = () => {
           </Button>
           <Button
             type="pagination"
-            disableButton={maxPage >= dataDriver.length}
+            disableButton={dataDriver && maxPage >= dataDriver.length}
             onClick={nextButton}
           >
             {" Next page >"}
