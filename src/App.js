@@ -1,5 +1,5 @@
 import "./theme/index.scss";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import { BlankPage, DriverManagement } from "./pages";
 import { createBrowserHistory } from "history";
 

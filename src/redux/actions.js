@@ -1,7 +1,7 @@
 import { driversConstant as dc } from "./constants";
 import axios from "axios";
 
-export function driversActions(id) {
+export function driversActions() {
   return (dispatch) => {
     dispatch({
       type: dc.LOADING,

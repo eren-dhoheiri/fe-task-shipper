@@ -14,6 +14,7 @@ import { driversActions } from "../../redux/actions";
 
 const DriverManagement = () => {
   const dispatch = useDispatch();
+
   const page = {
     title: "Driver Management",
     subtitle: "Daftar Driver yang bekerja dengan Anda",
@@ -39,20 +40,20 @@ const DriverManagement = () => {
     return 0;
   };
 
-  function getData() {
+  const getData = () => {
+    dispatch(driversActions());
+    setLoading(false);
+  };
+
+  useEffect(() => {
     const checkCache = localStorage.getItem("DRIVER");
-    const dataCache = checkCache ? JSON.parse(checkCache) : false;
-    if (dataCache.length >= 30) {
+    const dataCache = checkCache ? JSON.parse(checkCache) : setLoading(true);
+    if (dataCache && dataCache.length >= 30) {
       setDataDriver(dataCache);
       setLoading(false);
     } else {
-      dispatch(driversActions());
-      setLoading(false);
+      getData();
     }
-  }
-
-  useEffect(() => {
-    getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -95,7 +96,7 @@ const DriverManagement = () => {
         <div className="main-content__body" data-testid="driver-list">
           {loading ? (
             <Loading />
-          ) : dataDriver.length !== 0 ? (
+          ) : dataDriver.length ? (
             JSON.parse(JSON.stringify(dataDriver))
               .slice(minPage, maxPage)
               .map((e, k) => (
