@@ -13,12 +13,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { driversActions } from "../../redux/actions";
 
 const DriverManagement = () => {
+  const dispatch = useDispatch();
   const page = {
     title: "Driver Management",
     subtitle: "Daftar Driver yang bekerja dengan Anda",
   };
-
-  const dispatch = useDispatch();
 
   let [maxPage, setMaxPage] = useState(5);
   let [minPage, setMinPage] = useState(0);
@@ -66,10 +65,9 @@ const DriverManagement = () => {
         return true;
       } else {
         const dataClone = await dataCache.filter((row) => {
-          return (
-            row.name.first.toLowerCase().includes(searchText.toLowerCase()) ||
-            row.name.last.toLowerCase().includes(searchText.toLowerCase())
-          );
+          return row.name.first
+            .toLowerCase()
+            .includes(searchText.toLowerCase());
         });
         Promise.all(dataClone).then(() => {
           setDataDriver(dataClone);

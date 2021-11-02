@@ -31,5 +31,4 @@ const driverReducer = (state = initialState, action) => {
   }
 };
 
-// Exports
 export default driverReducer;

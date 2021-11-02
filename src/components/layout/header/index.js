@@ -4,7 +4,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 const Header = (props) => {
   const [user] = useState({
-    name: "Admin",
+    name: "Shipper User",
     photo: ImageHolder,
   });
 
