@@ -7,7 +7,6 @@ import {
   DriverCard,
   PageTitle,
   Loading,
-  NotFound,
 } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { driversActions } from "../../redux/actions";
@@ -111,7 +110,7 @@ const DriverManagement = () => {
                 />
               ))
           ) : (
-            <NotFound />
+            <Loading />
           )}
         </div>
         <div className="main-content__pagination">
